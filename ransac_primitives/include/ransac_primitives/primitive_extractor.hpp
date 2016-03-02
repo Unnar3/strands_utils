@@ -20,6 +20,8 @@ primitive_extractor<Point>::primitive_extractor(cloud_ptr new_cloud,
     base_primitive::number_disjoint_subsets = params.number_disjoint_subsets;
     base_primitive::min_inliers = params.inlier_min;
     base_primitive::connectedness_res = params.connectedness_res;
+    extract_single = false;
+
 
     // seed the random number generator
     srand(time(NULL));
@@ -329,6 +331,8 @@ void primitive_extractor<Point>::extract(std::vector<base_primitive*>& extracted
 
             std::cout << "Extracted a primitive of size: " << best_candidate->supporting_inds.size() << std::endl;
             std::cout << "Octree depth level scores: " << level_scores.transpose() << std::endl;
+
+            if(extract_single) break;
         }
 
         prob_not_found = prob_candidate_not_found(params.min_shape, candidates_evaluated, min_set);

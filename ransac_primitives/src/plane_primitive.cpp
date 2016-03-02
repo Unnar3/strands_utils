@@ -164,7 +164,8 @@ void plane_primitive::compute_shape_size(const MatrixXd& points)
 
         if (contours.empty()) {
             std::cout << "No contours found! Height: " << height << ", width: " << width << std::endl;
-            exit(0); // maybe return an empty array instead
+            // exit(0); // maybe return an empty array instead
+            return;
         }
 
         int maxind = 0;
